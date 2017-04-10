@@ -7,8 +7,18 @@ describe 'optoro_geminabox::default' do
         let(:chef_run) do
           ChefSpec::SoloRunner.new(platform: platform, version: version, log_level: :error) do |node|
             node.set['lsb']['codename'] = value['codename']
+            node.set['ec2'] = {}
             stub_command('which nginx').and_return('/usr/sbin/nginx')
           end.converge(described_recipe)
+        end
+
+        %w(
+          000-default
+          default
+        ).each do |site|
+          it "disables the #{site} site" do
+            expect(chef_run).to disable_nginx_site(site)
+          end
         end
 
         %w(
@@ -23,10 +33,10 @@ describe 'optoro_geminabox::default' do
 
         it 'create the /var/www/geminabox/data directory' do
           expect(chef_run).to create_directory('/var/www/geminabox/data').with(
-              user: 'www-data',
-              group: 'www-data',
-              mode: '0755'
-            )
+            user: 'www-data',
+            group: 'www-data',
+            mode: '0755'
+          )
         end
 
         it 'creates a zpool for geminabox_cache' do

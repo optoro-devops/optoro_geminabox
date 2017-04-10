@@ -21,3 +21,8 @@ suites:
   run_list:
     - recipe[optoro_ruby::default]
     - recipe[optoro_geminabox::default]
+  attributes:
+    optoro_ruby:
+      ruby_major_version: 2.2
+      ruby_minor_version: 7
+      source_sha256_sum: 374184c6c5bbc88fb7bad422368d4053a236fb6587f0eff76146dcba57f93da5

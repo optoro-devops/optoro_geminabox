@@ -1,9 +1,9 @@
-source 'http://berks-api.optoro.io'
+source 'https://supermarket.chef.io'
 
-cookbook 'geminabox', '~> 0.2.0'
-cookbook 'optoro_ruby', '~> 1.0.3'
-cookbook 'zpool', '~> 0.1.0'
-cookbook 'optoro_zfs', '~> 0.0.1'
-cookbook 'aws', '~> 2.6.4'
+cookbook 'geminabox'
+cookbook 'optoro_ruby'
+cookbook 'zpool'
+cookbook 'optoro_zfs'
+cookbook 'aws'
 
 metadata
