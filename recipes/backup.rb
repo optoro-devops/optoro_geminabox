@@ -1,5 +1,18 @@
 s3_credentials = Chef::EncryptedDataBagItem.load('passwords', 's3backup')
 
+cron 'daily geminabox backup' do
+  minute '0'
+  hour '5'
+  day '*'
+  month '*'
+  weekday '*'
+  command '/home/ubuntu/backup.sh'
+  mailto 'devops@optoro.com'
+  user 'ubuntu'
+  action :create
+  only_if { node.chef_environment !~ /stag(e|ing)/ }
+end
+
 template '/home/ubuntu/.s3cfg' do
   source 's3cfg.erb'
   owner 'ubuntu'
