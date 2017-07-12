@@ -1,0 +1,15 @@
+{
+  "id": "s3backup",
+  "access_key_id": {
+    "encrypted_data": "zPzkIklAsLrDOcVT6MaTObh9hozvKvN3WRRSqBvCHks=\n",
+    "iv": "B1v5p+t8QltXZ3pwVlZS/Q==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "secret_access_key": {
+    "encrypted_data": "+UTxUq+sISYBmbh2E8Y/XuHdARZEPfp0pyP/Y4CPDWM=\n",
+    "iv": "gOTH6lrRV5zEjcOGfYnnxA==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

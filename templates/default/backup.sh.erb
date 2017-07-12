@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+# Location, location, location
+DATA_DIR=<%= @data_dir %>
+S3_BUCKET=<%= @s3_bucket %>
+
+# Where to find the commands
+S3CMD=`which s3cmd`
+TARCMD=`which tar`
+DATE=`date +%Y%m%d`
+
+# Make a tarball of the gem data
+$TARCMD -czf /tmp/geminabox-$DATE.tar.gz $DATA_DIR
+
+# Ship it, and remove the file from disk if success
+$S3CMD put /tmp/geminabox-$DATE.tar.gz s3://$S3_BUCKET/geminabox/ && rm /tmp/geminabox-$DATE.tar.gz
+
+# Make it accessible in case we need it
+$S3CMD setacl s3://$S3_BUCKET/geminabox/geminabox-$DATE.tar.gz --acl-public
